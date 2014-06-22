@@ -1,4 +1,4 @@
-PAP
+PQP
 ===
 
 Plataforma Academica Padronizada
