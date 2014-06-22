@@ -26,7 +26,8 @@ class Pagina(models.Model):
 
 
 class Aba(models.Model):
-	titulo = models.CharField(max_length=100) 
+	titulo = models.CharField(max_length=100)
+
 	#widgets = lista de widgets
 
 	def adicionar_widget(self,widget):
