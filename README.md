@@ -13,5 +13,5 @@ Plataforma Academica Padronizada
 
 3. rode o servidor
 
-        django_admin.py runserver
+        python manage.py runserver
 
