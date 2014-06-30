@@ -11,7 +11,7 @@ class Widget(models.Model):
 	tamanho = models.IntegerField()
 
 	def html(self,args):
-	#função que retorna o html do widget
+	#funcao que retorna o html do widget
 		pass
 
-#adicionar models específicos, caso necessário
+#adicionar models especificos, caso necessario
