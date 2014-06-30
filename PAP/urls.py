@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
-import page
+
 
 admin.autodiscover()
 urlpatterns = patterns('',
@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'PAP.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-	url(r'^/','page.views.index'),
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^(?P<path>.*)','page.views.view_template'),
+    url(r'^usuarios/',include('usuarios.urls')),
+    url(r'^pages/',include('pages.urls')),
+    url(r'^widgets/',include('widgets.urls')),
 )
