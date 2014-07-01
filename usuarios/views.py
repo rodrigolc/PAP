@@ -8,4 +8,4 @@ from django.shortcuts import render
 def token_page(request):
     if request.method:
         pass
-    return render(request,"token_page.html")
+    return render(request,"usuarios/token_page.html")
