@@ -4,5 +4,6 @@ from usuarios.views import *
 
 
 urlpatterns = patterns('',
-    url(r'^tokens/$', tokens, name='tokens')
+    url(r'^tokens/$', tokens, name='tokens'),
+    url(r'^usuarios/$', usuarios, name='usuarios')
 )

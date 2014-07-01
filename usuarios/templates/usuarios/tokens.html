@@ -11,16 +11,16 @@
 	<td>Token</td>
 	<td>Tipo</td>
 	<td>Usado?</td>
+	<td>Link</td>
 </tr>
 
-{% for token in TokenConvite.objects.all %}
-
+{% for token in tokens %}
+ 
 	<tr>
 		<td>{{ token.token }}</td>
 		<td>{{ token.get_tipo_display}}</td>
-		<td>{% if token.usado %} Sim {%else%} Não {%endif%}
-
-		</td>
+		<td>{% if token.usado %} Sim {%else%} Não {%endif%}	</td>
+		<td><a href="/usuarios/usuarios?token={{token.token}}">Cadastrar com esse token</a></td>
 	</tr>
 
 {% endfor %}

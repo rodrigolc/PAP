@@ -10,14 +10,15 @@
 		<tr>
 			<td>Nome</td>
 			<td>login</td>
+			<td>token</td>
 		</tr>
 
 		{% for usuario in Professor.object.all %}
 
 		<tr>
-			<td>{{ token.token }}</td>
-			<td>{{ token.get_tipo_display}}</td>
-			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+			<td>{{ usuario.name }}</td>
+			<td>{{ usuario.login}}</td>
+			<td>{{ usuario.token}}</td>
 
 			</td>
 		</tr>
@@ -31,13 +32,14 @@
 		<tr>
 			<td>Nome</td>
 			<td>login</td>
+			<td>token</td>
 		</tr>
 		{% for usuario in Monitor.object.all %}
 
 		<tr>
-			<td>{{ token.token }}</td>
-			<td>{{ token.get_tipo_display}}</td>
-			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+			<td>{{ usuario.name }}</td>
+			<td>{{ usuario.login}}</td>
+			<td>{{ usuario.token}}</td>
 
 			</td>
 		</tr>
@@ -51,13 +53,14 @@
 		<tr>
 			<td>Nome</td>
 			<td>login</td>
+			<td>token</td>
 		</tr>
 		{% for usuario in Aluno.object.all %}
 
 		<tr>
-			<td>{{ token.token }}</td>
-			<td>{{ token.get_tipo_display}}</td>
-			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+			<td>{{ usuario.name }}</td>
+			<td>{{ usuario.login}}</td>
+			<td>{{ usuario.token}}</td>
 
 			</td>
 		</tr>

@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-
-
 class TokenConvite(models.Model):
     PROFESSOR = "PR"
     MONITOR = "MO"
@@ -26,8 +24,8 @@ class TokenConvite(models.Model):
 
 class Usuario(models.Model):
     #um usuario padrão do Django para cada Usuario da nossa aplicação
-    user = models.OneToOneField(User)
-    token = models.ForeignKey(TokenConvite)
+    user = models.OneToOneField(User,required=True)
+    token = models.ForeignKey(TokenConvite,required=True)
 
     class Meta:
         abstract = True
