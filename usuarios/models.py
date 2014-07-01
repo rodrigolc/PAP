@@ -17,8 +17,11 @@ class TokenConvite(models.Model):
     ( ALUNO, "Aluno" )
     ]
     tipo = models.CharField(max_length=20,choices=TIPOS,default=ALUNO,blank=False)
-    token = models.CharField(max_length=20)
-    usado = models.BooleanField()
+    token = models.CharField(max_length=20,primary_key=True)
+    usado = models.BooleanField(default=False)
+
+    def __unicode__(self):
+    	return "TokenConvite - %s (%s)" % (self.token,self.get_tipo_display())
 
 
 class Usuario(models.Model):

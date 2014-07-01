@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geração de Tokens</title>
+</head>
+<body>
+
+	<h2>Professores</h2>
+	<table style="border-spacing: 2px;border-color: black;">
+		<tr>
+			<td>Nome</td>
+			<td>login</td>
+		</tr>
+
+		{% for usuario in Professor.object.all %}
+
+		<tr>
+			<td>{{ token.token }}</td>
+			<td>{{ token.get_tipo_display}}</td>
+			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+
+			</td>
+		</tr>
+
+		{% endfor %}
+
+	</table>
+
+	<h2>Monitores</h2>
+	<table style="border-spacing: 2px;border-color: black;">
+		<tr>
+			<td>Nome</td>
+			<td>login</td>
+		</tr>
+		{% for usuario in Monitor.object.all %}
+
+		<tr>
+			<td>{{ token.token }}</td>
+			<td>{{ token.get_tipo_display}}</td>
+			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+
+			</td>
+		</tr>
+
+		{% endfor %}
+
+	</table>
+
+	<h2>Alunos</h2>
+	<table style="border-spacing: 2px;border-color: black;">
+		<tr>
+			<td>Nome</td>
+			<td>login</td>
+		</tr>
+		{% for usuario in Aluno.object.all %}
+
+		<tr>
+			<td>{{ token.token }}</td>
+			<td>{{ token.get_tipo_display}}</td>
+			<td>{% if token.usado %} Sim {%else%} Não {%endif%}
+
+			</td>
+		</tr>
+
+		{% endfor %}
+
+	</table>
+
+	<form action="." method="post">
+		{% csrf_token %}
+		<input type="radio" name="tipo" value="{{TokenConvite.PROFESSOR}}"> Professor<br>
+		<input type="radio" name="tipo" value="{{TokenConvite.MONITOR}}"> Monitor<br>
+		<input type="radio" name="tipo" value="{{TokenConvite.ALUNO}}"> Aluno<br>
+		<input type="submit" value="enviar"></input>
+	</form>
+
+</body>
+</html>
