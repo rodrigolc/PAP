@@ -10,22 +10,28 @@ class TokenConvite(models.Model):
     MONITOR = "MO"
     ALUNO = "AL"
     TIPOS = [
-    ( PROFESSOR, "Professor" ),
-    ( MONITOR, "Monitor" ),
-    ( ALUNO, "Aluno" )
+        (PROFESSOR, "Professor"),
+        (MONITOR, "Monitor"),
+        (ALUNO, "Aluno")
     ]
-    tipo = models.CharField(max_length=20,choices=TIPOS,default=ALUNO,blank=False)
-    token = models.CharField(max_length=20,primary_key=True)
+    tipo = models.CharField(
+        max_length=20,
+        choices=TIPOS,
+        default=ALUNO,
+        blank=False
+    )
+    token = models.CharField(max_length=20, primary_key=True)
     usado = models.BooleanField(default=False)
 
     def __unicode__(self):
-    	return "TokenConvite - %s (%s)" % (self.token,self.get_tipo_display())
+        return "TokenConvite - %s (%s)" % (self.token, self.get_tipo_display())
+
 
 
 class Usuario(models.Model):
     #um usuario padrão do Django para cada Usuario da nossa aplicação
-    user = models.OneToOneField(User,required=True)
-    token = models.ForeignKey(TokenConvite,required=True)
+    user = models.OneToOneField(User)
+    token = models.ForeignKey(TokenConvite)
 
     class Meta:
         abstract = True
@@ -50,5 +56,3 @@ class Aluno(Usuario):
     class Meta:
         verbose_name = 'Aluno'
         verbose_name_plural = 'Alunos'
-
-
