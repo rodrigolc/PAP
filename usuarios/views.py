@@ -16,13 +16,13 @@ def tokens(request):
         token.tipo = form['tipo']
         token.save()
 
-    return render(
-        request,
-        "usuarios/tokens/tokens.html",
-        {
+        return render(
+            request,
+            "usuarios/tokens/tokens.html",
+            {
             "tokens": TokenConvite.objects.all()
-        }
-    )
+            }
+        )
 
 
 #/usuarios/usuarios/
@@ -30,12 +30,12 @@ def usuarios(request):
     if request.GET['token']:
         TokenConvite.objects.get(token=request.GET['token'])
 
-    return render(
-        request,
-        "usuarios/usuarios/usuarios.html", {
-        "token": TokenConvite,
-        }
-    )
+        return render(
+            request,
+            "usuarios/usuarios/usuarios.html", {
+            "token": TokenConvite,
+            }
+        )
 
 
 #/usuarios/cadastro/
@@ -56,6 +56,30 @@ def cadastro(request):
                 "usuarios/cadastro/token_invalido.html"
             )
     elif request.method == "POST":
-        pass
-        #pass pra compilar, aqui fica a logica do cadastro, quando recebe
-        #os dados do form de cadastro
+        token = request.POST['token']
+        token = TokenConvite.objects.get(token=token)
+        if token.tipo == TokenConvite.PROFESSOR:
+            usuario = Professor()
+        elif token.tipo == TokenConvite.MONITOR:
+            usuario = Monitor()
+        else:
+            usuario = Aluno()
+        user = User()
+        name = request.POST['name']
+        namesplit = name.split(' ', 1)
+        user.username = request.POST['username']
+        user.first_name = namesplit[0]
+        user.last_name = namesplit[1] if namesplit[1] else ""
+        user.email = request.POST['email']
+        user.password = request.POST['password']
+        user.save()
+        usuario.user = user
+        usuario.token = token
+        usuario.save()
+        return render(
+            request,
+            "usuarios/cadastro/usuario_cadastrado.html",
+            {
+                'usuario': usuario
+            }
+        )

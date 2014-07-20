@@ -43,7 +43,7 @@ class Usuario(models.Model):
         abstract = True
 
     def __unicode__(self):
-        pass
+        return "%s - %s" % (self.user.get_username(), self.user.get_full_name())
 
 
 class Professor(Usuario):

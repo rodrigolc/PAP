@@ -5,9 +5,11 @@
 {% block body %}
 <form action="." method="post">
 {% csrf_token %}
+	
 	<input id="name" type="text" name="name" value="">Nome</input><br>
 	<input id="username" type="text" name="username" value="">Username</input><br>
 	<input id="email" type="email" name="email" value="">Email</input><br>
+	
 	<input id="password" type="password" name="password" value="">Senha</input><br>
 	<input id="password_confirm" type="password" name="password_confirm" value="">Confirmação de Senha</input><br>
 
@@ -24,7 +26,7 @@
 	}
 
 	$("#password").on('change',checa_senha)
-	$("#password").on('change',checa_senha)
+	$("#password_confirm").on('change',checa_senha)
 	</script>
 	
 	<input type="hidden" name="token" value="{{ token }}"/>
