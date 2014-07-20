@@ -11,14 +11,12 @@
 			<td>token</td>
 		</tr>
 
-		{% for usuario in Professor.object.all %}
+		{% for usuario in professores %}
 
 		<tr>
 			<td>{{ usuario.name }}</td>
 			<td>{{ usuario.login}}</td>
 			<td>{{ usuario.token}}</td>
-
-			</td>
 		</tr>
 
 		{% endfor %}
@@ -32,14 +30,12 @@
 			<td>login</td>
 			<td>token</td>
 		</tr>
-		{% for usuario in Monitor.object.all %}
+		{% for usuario in monitores %}
 
 		<tr>
 			<td>{{ usuario.name }}</td>
 			<td>{{ usuario.login}}</td>
 			<td>{{ usuario.token}}</td>
-
-			</td>
 		</tr>
 
 		{% endfor %}
@@ -53,14 +49,12 @@
 			<td>login</td>
 			<td>token</td>
 		</tr>
-		{% for usuario in Aluno.object.all %}
+		{% for usuario in alunos %}
 
 		<tr>
 			<td>{{ usuario.name }}</td>
 			<td>{{ usuario.login}}</td>
 			<td>{{ usuario.token}}</td>
-
-			</td>
 		</tr>
 
 		{% endfor %}

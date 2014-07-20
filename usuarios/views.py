@@ -9,7 +9,15 @@ import time
 #pagina para gerar tokens. Usada para testes. por enquanto. haha.
 #/usuarios/tokens/
 def tokens(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return render(
+            request,
+            "usuarios/tokens/tokens.html",
+            {
+            "tokens": TokenConvite.objects.all()
+            }
+        )
+    elif request.method == 'POST':
         form = request.POST
         token = TokenConvite()
         token.token = "aaa" + str(time.time())
@@ -27,15 +35,15 @@ def tokens(request):
 
 #/usuarios/usuarios/
 def usuarios(request):
-    if request.GET['token']:
-        TokenConvite.objects.get(token=request.GET['token'])
+    return render(
+        request,
+        "usuarios/usuarios/usuarios.html", {
+        "professores": Professor.objects.all,
+        "monitores": Monitor.objects.all,
+        "alunos": Aluno.objects.all,
 
-        return render(
-            request,
-            "usuarios/usuarios/usuarios.html", {
-            "token": TokenConvite,
-            }
-        )
+        }
+    )
 
 
 #/usuarios/cadastro/
