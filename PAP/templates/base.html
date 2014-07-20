@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "base_scripts.html" %}
+	<title>{% block title %} IF682 - {% block sub_title %}{%endblock sub_title %}{%endblock title%}</title>
+	{% block headers %}
+	{% endblock headers %}
+</head>
+<body>
+{%block body%}
+	<p>Base page.</p>
+	<p>something went <span style='color:red;'> WRONG</span></p>
+{%endblock body%}
+</body>
+<footer>
+	{% block footer %}
+		
+	{% endblock footer %}
+</footer>
+</html>

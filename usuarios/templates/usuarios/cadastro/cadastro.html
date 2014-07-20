@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block sub_title %}
+	Cadastro de Usuario
+{% endblock sub_title %}
+{% block body %}
+<form action="." method="post">
+{% csrf_token %}
+	<input id="name" type="text" name="name" value="">Nome</input><br>
+	<input id="username" type="text" name="username" value="">Username</input><br>
+	<input id="email" type="email" name="email" value="">Email</input><br>
+	<input id="password" type="password" name="password" value="">Senha</input><br>
+	<input id="password_confirm" type="password" name="password_confirm" value="">Confirmação de Senha</input><br>
+
+	<p id='senha_dif' style="color: red; display: hidden;">Senhas diferentes.</p>
+	
+	<script type="text/javascript">
+	
+	function checa_senha(){
+		if($("#password").val() == $("#password_confirm").val()){
+			$("#senha_dif").hide('fast');
+		}else{
+			$("#senha_dif").show('fast');;
+		}
+	}
+
+	$("#password").on('change',checa_senha)
+	$("#password").on('change',checa_senha)
+	</script>
+	
+	<input type="hidden" name="token" value="{{ token }}"/>
+    <input type="submit" value="cadastrar"></input>
+</form>
+	
+{% endblock body %}

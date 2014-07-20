@@ -4,6 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+# User Fields
+# username
+# password
+# email
+# first_name
+# last_name
+
 
 class TokenConvite(models.Model):
     PROFESSOR = "PR"
@@ -25,7 +32,6 @@ class TokenConvite(models.Model):
 
     def __unicode__(self):
         return "TokenConvite - %s (%s)" % (self.token, self.get_tipo_display())
-
 
 
 class Usuario(models.Model):
