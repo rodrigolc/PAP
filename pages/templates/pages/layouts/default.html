@@ -8,7 +8,7 @@
 		{% block nav_item %}
 			
 			{% if aba_it.link == aba.link %}
-				<a href="/pages/{{aba_it.link}}/" class="tab active">{{aba_it.titulo}}</a>
+				<a href="/pages/{{aba_it.link}}/" id="aba{{forloop.counter0}}"	class="tab active">{{aba_it.titulo}}</a>
 			{% else %}
 				<a href="/pages/{{aba_it.link}}/" class="tab">{{aba_it.titulo}}</a>
 			{% endif %}
@@ -18,12 +18,28 @@
 	{% endfor %}
 </nav>
 
+
 {% block left_menu %}
-	<div id="left_menu"></div>	
+	<div id="left_menu" class="menu left">
+		
+	</div>	
 {% endblock left_menu %}
 
 {% block right_menu %}
-	<div id="right_menu"></div>	
+	<div id="right_menu" class="menu right">
+		
+	</div>	
 {% endblock right_menu %}
+
+{% block widgets %}
+	{% for widget in widgets %}
+		{% if forloop.counter0 % 2 == 0 %}
+			<div id="widget{{forloop.counter0}}" class="widget left"></div>
+		{% else %}
+			<div id="widget{{forloop.counter0}}" class="widget right"></div>		
+		{% endif %}
+		
+	{% endfor %}
+{% endblock widgets %}
 
 {% endblock body %}
