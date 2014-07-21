@@ -14,7 +14,8 @@ def tokens(request):
             request,
             "usuarios/tokens/tokens.html",
             {
-            "tokens": TokenConvite.objects.all()
+            "tokens": TokenConvite.objects.all(),
+            "TokenConvite": TokenConvite
             }
         )
     elif request.method == 'POST':
@@ -28,7 +29,8 @@ def tokens(request):
             request,
             "usuarios/tokens/tokens.html",
             {
-            "tokens": TokenConvite.objects.all()
+            "tokens": TokenConvite.objects.all(),
+            "TokenConvite": TokenConvite
             }
         )
 
