@@ -91,3 +91,5 @@ def cadastro(request):
                 'usuario': usuario
             }
         )
+    else:
+        return render(request, "erro.html")

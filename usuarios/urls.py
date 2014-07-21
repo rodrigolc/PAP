@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
-from usuarios.views import *
+from usuarios import views
 
 
 urlpatterns = patterns('',
-    url(r'^tokens/$', tokens, name='tokens'),
-    url(r'^usuarios/$', usuarios, name='usuarios'),
-    url(r'^cadastro/$', cadastro, name='cadastro')
-)
+                       url(r'^tokens/$', views.tokens, name='tokens'),
+                       url(r'^usuarios/$', views.usuarios, name='usuarios'),
+                       url(r'^cadastro/$', views.cadastro, name='cadastro')
+                       )

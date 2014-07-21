@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<nav>
+	{% for aba_it in abas %}
+		
+		{% block nav_item %}
+			
+			{% if aba_it.link == aba.link %}
+				<a href="/pages/{{aba_it.link}}/" class="tab active">{{aba_it.titulo}}</a>
+			{% else %}
+				<a href="/pages/{{aba_it.link}}/" class="tab">{{aba_it.titulo}}</a>
+			{% endif %}
+
+		{% endblock nav_item %}
+		
+	{% endfor %}
+</nav>
+
+{% block left_menu %}
+	<div id="left_menu"></div>	
+{% endblock left_menu %}
+
+{% block right_menu %}
+	<div id="right_menu"></div>	
+{% endblock right_menu %}
+
+{% endblock body %}
