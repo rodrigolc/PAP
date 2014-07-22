@@ -16,29 +16,25 @@ def calendar(widget, request, obj):
 
 
 def notas(widget, request, obj):
+    boletim = Boletim.objects.get(widget=widget)
 
-    try:
-        boletim = Boletim.objects.get(widget=widget)
-        alunos = Aluno.objects.all()
-        _notas = []
-        for aluno in alunos():
-            ns = []
-            nsum = 0.0
-            for avaliacao in boletim.avaliacoes:
-                try:
-                    n = avaliacao.notas(aluno=aluno).nota
-                except Exception:
-                    n = 0.0
-                finally:
-                    ns.append(n)
-                    nsum += n * avaliacao.peso
-            _notas.append({"nome": aluno.nome, "notas": ns, "media": nsum})
-
-    except Exception, e:
-        raise e
-    else:
-        obj.update({"boletim": boletim, "notas": _notas})
-        return render_to_string("widgets/files/notas.html", obj)
+    alunos = Aluno.objects.all()
+    _notas = []
+    for aluno in alunos():
+        ns = []
+        nsum = 0.0
+        for avaliacao in boletim.avaliacoes:
+            try:
+                n = avaliacao.notas(aluno=aluno).nota
+            except Exception:
+                n = 0.0
+            finally:
+                ns.append(n)
+                nsum += n * avaliacao.peso
+        _notas.append({"nome": aluno.nome, "notas": ns, "media": nsum})
+ 
+   obj.update({"boletim": boletim, "notas": _notas})
+    return render_to_string("widgets/files/notas.html", obj)
 
 
 def textWidget(widget, request, obj):
