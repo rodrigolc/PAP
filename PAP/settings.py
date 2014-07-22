@@ -62,7 +62,9 @@ WSGI_APPLICATION = 'PAP.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 if os.environ['HEROKU'] == "true":
     import dj_database_url
-    DATABASES['default'] = dj_database_url.config()
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
 else:
     DATABASES = {
         'default': {
@@ -104,5 +106,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, '../widgets/static/widgets'),
 )
-
-
