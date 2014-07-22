@@ -40,8 +40,6 @@ INSTALLED_APPS = (
     'usuarios',
     'widgets',
     'bootstrap3',
-    'dj-database-url'
-    'dj-static'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,18 +58,13 @@ WSGI_APPLICATION = 'PAP.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-if os.environ['HEROKU'] == "true":
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config()
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+}
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'PAP/templates'),
