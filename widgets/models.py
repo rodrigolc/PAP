@@ -2,6 +2,9 @@
 
 from django.db import models
 # Create your models here.
+import widgets.functions as functions
+
+parsers = __import__("widgets.functions")
 
 
 class Widget(models.Model):
@@ -10,7 +13,9 @@ class Widget(models.Model):
 
     # definem se o widget cabe na aba
     preenche_tudo = models.BooleanField()
-    tamanho = models.IntegerField()
+    altura = models.IntegerField()
+    largura = models.IntegerField()
+    parser = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = 'Widget'
@@ -19,6 +24,7 @@ class Widget(models.Model):
     def __unicode__(self):
         return "Widget - %s (%s)" % (self.titulo, self.arquivo)
 
-
+    def parse(self, request, obj):
+        return vars(functions)[self.parser](self, request, obj)
 
 # adicionar models especificos, caso necessario

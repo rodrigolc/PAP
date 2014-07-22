@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'pages',
     'usuarios',
     'widgets',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (

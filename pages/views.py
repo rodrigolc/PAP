@@ -29,6 +29,7 @@ def get_usuario(user):
         return aluno
 
 # acha a aba certa, gera a pagina
+# view principal do sistema. basicamente tudo aqui é feito por aqui
 
 
 def aba(request, aba):
@@ -37,7 +38,7 @@ def aba(request, aba):
         return erro(request)
     pagina = aba_model.pagina
     template_base = pagina.layout
-    widgets = aba_model.widgets
+    widgets = aba_model.widgets.all()
 
     # carregar abas do nav
     autorizacao = 0
@@ -49,15 +50,25 @@ def aba(request, aba):
     if int(aba_model.acesso) > autorizacao:
         return erro(request)
 
+    # filtra abas que o usuario nao tem acesso.
     abas = Aba.objects.filter(acesso__lte=autorizacao)
 
     # carregar widgets da aba
+    for widget in widgets:
+        print widget
+        widget.txt = widget.parse(request, {"widget": widget})
+        print widget.txt
+    # retornar aba
 
     return render(request, "pages/aba.html", {
+        "titulo": pagina.titulo,
+        "sub_titulo": aba_model.titulo,
         "widgets": widgets,
         "base": "pages/layouts/" + template_base + ".html",
-        "aba": aba_model,
-        "abas": abas
+        "aba_ativa": aba_model,
+        "abas": abas,
+        "request": request,
+        "autorizacao": autorizacao
     })
 
 

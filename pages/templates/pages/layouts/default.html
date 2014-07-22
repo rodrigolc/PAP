@@ -1,45 +1,117 @@
 {% extends "base.html" %}
 
-{% block body %}
 
-<nav>
-	{% for aba_it in abas %}
+
+{% block headers %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<style>
+.height-50{ height: 50px; }
+.height-100{ height: 100px; }
+.height-150{ height: 150px; }
+.height-200{ height: 200px; }
+.height-250{ height: 250px; }
+.height-300{ height: 300px; }
+.height-350{ height: 350px; }
+.height-400{ height: 400px; }
+.height-450{ height: 450px; }
+.height-500{ height: 500px; }
+</style>
+{% endblock headers %}
+
+{% block title %}
+{{titulo}} - {{sub_titulo}}
+{% endblock title %}
+
+{% block body %}
+<div class="row">
+<div class="col-sm-2"></div>
+	<div class="col-sm-10">
+		<div class="page-header">
+			<h1>{{ titulo }}</h1>
+		</div>
+	</div>
+</div>
+<div class="row">
+	{% block left_menu %}
+	
+	<div id="left_menu" class="menu left">
+		<div class="col-sm-2">
+		{% if request.user.is_authenticated and autorizacao >= 4 %}
+			<p><a class="btn btn-lg btn-block btn-default" href="#">Nova Aba</a></p>
+			<p><a class="btn btn-lg btn-block btn-default" href="#">Remover Aba</a></p>
+			{% endif %}
+		</div>
+	</div>	
 		
-		{% block nav_item %}
-			
-			{% if aba_it.link == aba.link %}
-				<a href="/pages/{{aba_it.link}}/" id="aba{{forloop.counter0}}"	class="tab active">{{aba_it.titulo}}</a>
+	
+	{% endblock left_menu %}
+	
+	<div class="col-sm-8">
+		{% block navigation %}
+
+		<ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+			{% for aba in abas %}
+			{% if aba.link == aba_ativa.link %}
+			<li class="active">
+				<a href="/pages/{{aba.link}}/" role="tab">{{aba.titulo}}</a>
+			</li>	
 			{% else %}
-				<a href="/pages/{{aba_it.link}}/" class="tab">{{aba_it.titulo}}</a>
+			<li>
+				<a href="/pages/{{aba.link}}/" role="tab" >{{aba.titulo}}</a>
+			</li>
 			{% endif %}
 
-		{% endblock nav_item %}
-		
-	{% endfor %}
-</nav>
+			{% endfor %}
+			
+		</ul>
+		{% endblock navigation %}
 
 
-{% block left_menu %}
-	<div id="left_menu" class="menu left">
-		
-	</div>	
-{% endblock left_menu %}
+		<div class="tab-content" style="box-sizing: border-box;">
+			{% block widgets %}
+			<div class"row">
+				<div class="tab-content">
+					
+					<div >
+						<div class="row">
+							{% for widget in widgets %}
+							<div class="col-sm-{{widget.largura}}">
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h3 class="panel-title">{{widget.titulo}}</h3>
+									</div>
+									<div class="panel-body height-{{widget.altura}}">
+										{{widget.txt}}
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
 
-{% block right_menu %}
-	<div id="right_menu" class="menu right">
-		
-	</div>	
-{% endblock right_menu %}
-
-{% block widgets %}
-	{% for widget in widgets %}
-		{% if forloop.counter0 % 2 == 0 %}
-			<div id="widget{{forloop.counter0}}" class="widget left"></div>
-		{% else %}
-			<div id="widget{{forloop.counter0}}" class="widget right"></div>		
-		{% endif %}
-		
-	{% endfor %}
-{% endblock widgets %}
+					
+				</div>
+			</div>
+			{% endblock widgets %}
+		</div>
+	</div>
+	{% block right_menu %}
+	
+		<div id="right_menu" class="menu right">
+		<div class="col-sm-2">
+		{% if request.user.is_authenticated and autorizacao >= 4 %}
+			<p><a class="btn btn-lg btn-block btn-default" href="#">Templates</a></p>
+			<p><a class="btn btn-lg btn-block btn-default" href="#">Widgets</a></p>
+			<p><a class="btn btn-lg btn-block btn-default" href="#">Skins</a></p>
+			{% endif %}
+		</div>
+	</div>		
+	
+	
+	{% endblock right_menu %}
+	
+</div>
 
 {% endblock body %}
