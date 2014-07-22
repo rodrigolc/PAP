@@ -88,3 +88,9 @@ import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, '../pages/static/pages'),
+    os.path.join(PROJECT_PATH, '../widgets/static/widgets'),
+    os.path.join(PROJECT_PATH, '../usuarios/static/usuarios'),
+)
