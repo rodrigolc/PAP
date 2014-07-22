@@ -16,7 +16,7 @@ def calendar(widget, request, obj):
 
 
 def notas(widget, request, obj):
-	
+
     try:
         boletim = Boletim.objects.get(widget=widget)
         alunos = Aluno.objects.all()
@@ -39,3 +39,7 @@ def notas(widget, request, obj):
     else:
         obj.update({"boletim": boletim, "notas": _notas})
         return render_to_string("widgets/files/notas.html", obj)
+
+
+def textWidget(widget, request, obj):
+    return render_to_string("widgets/files/textWidget.html", obj)
