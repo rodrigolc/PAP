@@ -32,7 +32,7 @@ def notas(widget, request, obj):
                 ns.append(n)
                 nsum += n * avaliacao.peso
         _notas.append({"nome": aluno.nome, "notas": ns, "media": nsum})
- 
+
    obj.update({"boletim": boletim, "notas": _notas})
     return render_to_string("widgets/files/notas.html", obj)
 
