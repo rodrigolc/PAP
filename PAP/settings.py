@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '0=l4myi3g)q$d@#)-#iw(-k_5#@$fzbei=zn#2a1fgx!du1k@d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True if os.environ["DEBUG"] == "true" else False
+
+TEMPLATE_DEBUG = True if os.environ["DEBUG"] == "true" else False
 
 ALLOWED_HOSTS = []
 
@@ -60,15 +63,7 @@ if os.environ['HEROKU'] == "true":
     DATABASES = {
         'default': dj_database_url.config()
     }
-    DEBUG = False
-
-    TEMPLATE_DEBUG = False
-
 else:
-    DEBUG = True
-
-    TEMPLATE_DEBUG = True
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
