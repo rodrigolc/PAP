@@ -55,11 +55,11 @@
 			{% for aba in abas %}
 			{% if aba.link == aba_ativa.link %}
 			<li class="active">
-				<a href="/{{pagina.link}}/{{aba.link}}/" role="tab">{{aba.titulo}}</a>
+				<a href="/pages/{{pagina.link}}/{{aba.link}}/" role="tab">{{aba.titulo}}</a>
 			</li>	
 			{% else %}
 			<li>
-				<a href="/{{pagina.link}}/{{aba.link}}/" role="tab" >{{aba.titulo}}</a>
+				<a href="/pages/{{pagina.link}}/{{aba.link}}/" role="tab" >{{aba.titulo}}</a>
 			</li>
 			{% endif %}
 
