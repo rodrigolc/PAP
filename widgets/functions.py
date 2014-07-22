@@ -42,4 +42,6 @@ def notas(widget, request, obj):
 
 
 def textWidget(widget, request, obj):
+    text_widget = TextWidget.objects.get(widget=widget)
+    obj.update({"widget": text_widget})
     return render_to_string("widgets/files/textWidget.html", obj)

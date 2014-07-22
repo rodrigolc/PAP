@@ -55,9 +55,7 @@ def aba(request, aba):
 
     # carregar widgets da aba
     for widget in widgets:
-        print widget
         widget.txt = widget.parse(request, {"widget": widget})
-        print widget.txt
     # retornar aba
 
     return render(request, "pages/aba.html", {
