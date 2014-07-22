@@ -7,6 +7,9 @@
 	<title>{% block title %}{%endblock title%}</title>
 	
 	{% block headers %}
+	{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 	{% endblock headers %}
 
 </head>
