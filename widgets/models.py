@@ -4,6 +4,8 @@ from django.db import models
 # Create your models here.
 import widgets.functions as functions
 from usuarios.models import *
+from pages.models import *
+
 parsers = __import__("widgets.functions")
 
 

@@ -17,7 +17,7 @@ def calendario(widget, request, obj):
 
 
 def notas(widget, request, obj):
-    from widgets.models import *
+    # from widgets.models import *
     boletim = Boletim.objects.get(widget=widget)
 
     alunos = Aluno.objects.filter(pagina=boletim.pagina).all()
@@ -51,7 +51,7 @@ def notas(widget, request, obj):
 
 
 def textWidget(widget, request, obj):
-    from widgets.models import *
+    # from widgets.models import *
     text_widget = TextWidget.objects.get(widget=widget)
     obj.update({"widget": text_widget})
     return render_to_string("widgets/files/textWidget.html", obj)
