@@ -1,0 +1,32 @@
+ <table class="table">
+    <thead>
+        <tr>
+            <th>Aluno</th>
+        {% for avaliacao in boletim.avaliacoes %}
+            <th>{{avaliacao.nome}}</th>
+        {% endfor %}
+            <th>Média</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for nota in notas %}
+        <tr>
+            <td>{{nota.nome}}</td>
+            {% for nota in notas.notas %}
+                {% if nota >= 7 %}
+                    <td class="success">{{nota}}</td>
+                {% elif nota >= 5%}
+                    <td class="active">{{nota}}</td>
+                {% elif nota >= 3%}
+                    <td class="warning">{{nota}}</td>
+                {% else %}
+                    <td class="danger">{{nota}}</td>
+                {% endif %}
+            {% endfor %}
+            <td>{{nota.media}}</td>
+        </tr>        
+    {% endfor %}
+
+</tbody>
+</table>

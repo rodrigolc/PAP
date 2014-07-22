@@ -3,7 +3,7 @@
 from django.db import models
 # Create your models here.
 import widgets.functions as functions
-
+from usuarios.models import *
 parsers = __import__("widgets.functions")
 
 
@@ -28,3 +28,42 @@ class Widget(models.Model):
         return vars(functions)[self.parser](self, request, obj)
 
 # adicionar models especificos, caso necessario
+
+
+class Nota(models.Model):
+
+    class Meta:
+        verbose_name = 'Nota'
+        verbose_name_plural = 'Notas'
+
+    def __unicode__(self):
+        return "Nota (%s) %s - %s" % (self.aluno.user.username, self.avaliacao.nome, self.nota)
+    nota = models.FloatField()
+    aluno = models.ForeignKey(Aluno)
+    avaliacao = models.ForeignKey("Avaliacao", related_name='notas')
+
+
+class Avaliacao(models.Model):
+
+    class Meta:
+        verbose_name = 'Avaliação'
+        verbose_name_plural = 'Avaliações'
+
+    def __unicode__(self):
+        return "Avaliacao %s - %s %s" % (self.nome, self.peso, self.boletim)
+    nome = models.CharField(max_length=100)
+    peso = models.FloatField()
+    boletim = models.ForeignKey("Boletim", related_name='avaliacoes')
+
+
+class Boletim(models.Model):
+
+    class Meta:
+        verbose_name = 'Boletim'
+        verbose_name_plural = 'Boletins'
+
+    def __unicode__(self):
+        return "Boletim - %s" % self.nome
+        
+    nome = models.CharField(max_length=100)
+    widget = models.ForeignKey(Widget)
