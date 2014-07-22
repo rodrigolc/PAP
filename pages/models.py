@@ -7,6 +7,7 @@ from widgets.models import Widget
 
 
 class Pagina(models.Model):
+    link = models.CharField(max_length=100)
     titulo = models.CharField(max_length=100)
     layout = models.CharField(max_length=100)
 
@@ -23,10 +24,12 @@ class Aba(models.Model):
     link = models.CharField(max_length=50)
     pagina = models.ForeignKey(Pagina, related_name='abas')
     widgets = models.ManyToManyField(Widget, related_name='abas')
+    ordem = models.IntegerField()
 
     class Meta:
         verbose_name = 'Aba'
         verbose_name_plural = 'Abas'
+        ordering = ["ordem","link"]
 
     def __unicode__(self):
         return "Aba - %s" % (self.titulo)

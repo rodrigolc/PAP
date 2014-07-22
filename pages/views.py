@@ -6,23 +6,25 @@ from usuarios.models import *
 # Create your views here.
 
 
-def get_usuario(user):
+def get_usuario(page, user):
+    pagina = Pagina.objects.get(link=page)
+
     try:
-        professor = Professor.objects.get(user=user)
+        professor = Professor.objects.get(user=user, pagina=pagina)
     except Exception:
         pass
     else:
         return professor
 
     try:
-        monitor = Monitor.objects.get(user=user)
+        monitor = Monitor.objects.get(user=user, pagina=pagina)
     except Exception:
         pass
     else:
         return monitor
 
     try:
-        aluno = Aluno.objects.get(user=user)
+        aluno = Aluno.objects.get(user=user, pagina=pagina)
     except Exception:
         raise Exception("user nao encontrado")
     else:
@@ -32,18 +34,24 @@ def get_usuario(user):
 # view principal do sistema. basicamente tudo aqui é feito por aqui
 
 
-def aba(request, aba):
-    aba_model = Aba.objects.get(link=aba)
-    if not aba_model:
+def aba(request, pagina, aba):
+    try:
+        pagina = Pagina.objects.get(link=pagina)
+        aba_model = Aba.objects.get(link=aba, pagina=pagina)
+    except Exception:
         return erro(request)
-    pagina = aba_model.pagina
+    else:
+        pass
+    finally:
+        pass
+
     template_base = pagina.layout
     widgets = aba_model.widgets.all()
 
     # carregar abas do nav
     autorizacao = 0
     if request.user.is_authenticated() and not request.user.is_staff:
-        usuario = get_usuario(request.user)
+        usuario = get_usuario(pagina, request.user)
         autorizacao = usuario.token.tipo
     elif request.user.is_authenticated():
         autorizacao = 3
@@ -66,12 +74,13 @@ def aba(request, aba):
         "aba_ativa": aba_model,
         "abas": abas,
         "request": request,
-        "autorizacao": autorizacao
+        "autorizacao": autorizacao,
+        "pagina": pagina
     })
 
 
 # Pagina inicial
-def index(request):
+def index(request, pagina):
     # tem que achar a aba inicial,
     aba_inicial = "index"
     return aba(request, aba_inicial)

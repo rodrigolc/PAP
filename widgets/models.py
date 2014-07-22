@@ -10,7 +10,6 @@ parsers = __import__("widgets.functions")
 class Widget(models.Model):
     titulo = models.CharField(max_length=100)
     arquivo = models.CharField(max_length=1000)
-
     # definem se o widget cabe na aba
     preenche_tudo = models.BooleanField()
     altura = models.IntegerField()
@@ -22,7 +21,7 @@ class Widget(models.Model):
         verbose_name_plural = 'Widgets'
 
     def __unicode__(self):
-        return "Widget - %s (%s)" % (self.titulo, self.arquivo)
+        return "Widget - %s (%s)" % (self.titulo, self.parser)
 
     def parse(self, request, obj):
         return vars(functions)[self.parser](self, request, obj)
@@ -39,7 +38,7 @@ class Nota(models.Model):
     def __unicode__(self):
         return "Nota (%s) %s - %s" % (self.aluno.user.username, self.avaliacao.nome, self.nota)
     nota = models.FloatField()
-    aluno = models.ForeignKey(Aluno)
+    aluno = models.ForeignKey("usuarios.Aluno")
     avaliacao = models.ForeignKey("Avaliacao", related_name='notas')
 
 
@@ -64,7 +63,7 @@ class Boletim(models.Model):
 
     def __unicode__(self):
         return "Boletim - %s" % self.nome
-
+    pagina = models.ForeignKey("pages.Pagina")
     nome = models.CharField(max_length=100)
     widget = models.ForeignKey(Widget)
 
@@ -76,6 +75,6 @@ class TextWidget(models.Model):
         verbose_name_plural = 'TextWidgets'
 
     def __unicode__(self):
-        pass
+        return "TextWidget - \"%s\"" % (self.textMessage)
     widget = models.ForeignKey(Widget)
-    textMessage = models.CharField(max_length=5120)
+    textMessage = models.TextField()

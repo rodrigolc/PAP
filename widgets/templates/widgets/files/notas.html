@@ -1,32 +1,52 @@
- <table class="table">
+ {# <script type="text/javascript" src="/static/widgets/js/tables.js"></script> #}
+
+ <table id="widget-{{widget.id}}" class="table table-responsive" style="height: 100%">
+
     <thead>
         <tr>
             <th>Aluno</th>
-        {% for avaliacao in boletim.avaliacoes %}
-            <th>{{avaliacao.nome}}</th>
-        {% endfor %}
+            {% for avaliacao in boletim.avaliacoes.all %}
+            <th>{{avaliacao.nome}}({{avaliacao.peso}})</th>
+            {% endfor %}
             <th>Média</th>
         </tr>
     </thead>
-    <tbody>
 
-    {% for nota in notas %}
-        <tr>
+    <tbody >
+        {% for i in gambi %}
+
+
+        {% for nota in notas %}
+        <tr >
             <td>{{nota.nome}}</td>
-            {% for nota in notas.notas %}
-                {% if nota >= 7 %}
-                    <td class="success">{{nota}}</td>
-                {% elif nota >= 5%}
-                    <td class="active">{{nota}}</td>
-                {% elif nota >= 3%}
-                    <td class="warning">{{nota}}</td>
-                {% else %}
-                    <td class="danger">{{nota}}</td>
-                {% endif %}
+            {% for nota in nota.notas %}
+            {% if nota >= 7 %}
+            <td class="success">{{nota}}</td>
+            {% elif nota >= 5%}
+            <td class="active">{{nota}}</td>
+            {% elif nota >= 3%}
+            <td class="warning">{{nota}}</td>
+            {% else %}
+            <td class="danger">{{nota}}</td>
+            {% endif %}
             {% endfor %}
-            <td>{{nota.media}}</td>
+            {% if nota.media >= 7 %}
+            <td class="success">{{nota.media}}</td>
+            {% elif nota.media >= 5%}
+            <td class="active">{{nota.media}}</td>
+            {% elif nota.media >= 3%}
+            <td class="warning">{{nota.media}}</td>
+            {% else %}
+            <td class="danger">{{nota.media}}</td>
+            {% endif %}
         </tr>        
-    {% endfor %}
+        {% endfor %}
+        {% endfor %}
 
-</tbody>
+
+
+    </tbody>
 </table>
+{# <script type="text/javascript">
+$('#widget-{{widget.id}}').fixedHeaderTable({ fixedColumn:20 });
+</script> #}

@@ -13,6 +13,6 @@ urlpatterns = patterns('',
 
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^usuarios/', include('usuarios.urls')),
-                       url(r'^pages/', include('pages.urls')),
                        url(r'^widgets/', include('widgets.urls')),
+                       url(r'^', include('pages.urls')),
                        ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

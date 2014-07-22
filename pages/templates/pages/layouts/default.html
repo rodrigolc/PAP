@@ -55,11 +55,11 @@
 			{% for aba in abas %}
 			{% if aba.link == aba_ativa.link %}
 			<li class="active">
-				<a href="/pages/{{aba.link}}/" role="tab">{{aba.titulo}}</a>
+				<a href="/{{pagina.link}}/{{aba.link}}/" role="tab">{{aba.titulo}}</a>
 			</li>	
 			{% else %}
 			<li>
-				<a href="/pages/{{aba.link}}/" role="tab" >{{aba.titulo}}</a>
+				<a href="/{{pagina.link}}/{{aba.link}}/" role="tab" >{{aba.titulo}}</a>
 			</li>
 			{% endif %}
 
@@ -82,7 +82,7 @@
 									<div class="panel-heading">
 										<h3 class="panel-title">{{widget.titulo}}</h3>
 									</div>
-									<div class="panel-body height-{{widget.altura}}">
+									<div class="panel-body height-{{widget.altura}}"  style="display:block; overflow: auto">
 										{{widget.txt}}
 									</div>
 								</div>
