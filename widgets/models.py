@@ -10,6 +10,7 @@ parsers = __import__("widgets.functions")
 class Widget(models.Model):
     titulo = models.CharField(max_length=100)
     arquivo = models.CharField(max_length=1000)
+    textMessage = models.CharField(max_length=1000)
 
     # definem se o widget cabe na aba
     preenche_tudo = models.BooleanField()

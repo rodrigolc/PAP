@@ -11,3 +11,6 @@ def default(widget):
 
 def calendar(widget,request,obj):
     return render_to_string("widgets/files/calendar.html", obj)
+
+def textWidget(widget,request,obj):
+    return render_to_string("widgets/files/textWidget.html", obj)
