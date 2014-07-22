@@ -72,8 +72,8 @@ class Boletim(models.Model):
 class TextWidget(models.Model):
 
     class Meta:
-        verbose_name = _('TextWidget')
-        verbose_name_plural = _('TextWidgets')
+        verbose_name = 'TextWidget'
+        verbose_name_plural = 'TextWidgets'
 
     def __unicode__(self):
         pass
