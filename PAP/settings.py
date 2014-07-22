@@ -105,3 +105,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, '../widgets/static/widgets'),
 )
+ADMIN_MEDIA_PREFIX = '/static/admin/'
