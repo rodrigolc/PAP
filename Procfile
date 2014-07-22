@@ -1,1 +1,1 @@
-web: gunicorn PAP.wsgi --log-file -
+web: gunicorn PAP.wsgi
